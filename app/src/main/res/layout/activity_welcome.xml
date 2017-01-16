@@ -1,0 +1,134 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="com.satoaki.vertretungsplan.Welcome">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fullscreen_content"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:animateLayoutChanges="true"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:text="by Satoaki Eitschberger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/WelcomeCredits"
+                android:layout_alignParentEnd="true"
+                android:textAlignment="viewStart"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="   "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/WelcomeCredits"
+                android:id="@+id/ignore1"
+                android:layout_alignParentEnd="true"
+                android:textSize="60sp"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="@string/untertitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/WelcomeTitle"
+                android:layout_alignStart="@+id/WelcomeLogo"
+                android:layout_marginTop="27dp"
+                android:id="@+id/WelcomeSloagen"
+                android:layout_alignEnd="@+id/WelcomeLogo"
+                android:textSize="12sp" />
+
+            <ImageView
+                app:srcCompat="@drawable/fsglogo"
+                android:id="@+id/WelcomeLogo"
+                android:layout_width="200dp"
+                android:layout_height="430dp"
+                android:layout_marginBottom="42dp"
+                android:layout_above="@+id/ignore1"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:text="@string/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/WelcomeTitle"
+                android:textColor="?attr/colorControlNormal"
+                android:textStyle="normal|bold"
+                android:textSize="24sp"
+                android:layout_marginBottom="69dp"
+                android:layout_alignBottom="@+id/WelcomeLogo"
+                android:layout_alignStart="@+id/WelcomeSloagen" />
+
+            <TextView
+                android:text="@string/Verion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/Welcome_version" />
+
+            <AutoCompleteTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:drawableLeft="@drawable/ic_book"
+                android:id="@+id/Welcome_inp_klasse"
+                android:hint="Deine Klasse"
+                android:pointerIcon="none"
+                android:textColorLink="?attr/colorControlNormal"
+                android:textColor="?attr/colorControlNormal"
+                style="@style/AppTheme.NoActionBar"
+                android:backgroundTint="?attr/colorControlNormal"
+                android:layout_alignBottom="@+id/WelcomeLogo"
+                android:layout_alignStart="@+id/WelcomeLogo"
+                android:layout_alignEnd="@+id/WelcomeLogo" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_expand"
+                android:id="@+id/Welcome_slider"
+                tools:ignore="ContentDescription,VectorDrawableCompat"
+                android:contentDescription=""
+                android:scaleX="2"
+                android:layout_below="@+id/WelcomeLogo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="21dp" />
+
+        </RelativeLayout>
+    </FrameLayout>
+
+</FrameLayout>

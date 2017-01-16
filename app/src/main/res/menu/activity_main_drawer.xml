@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_hud"
+            android:icon="@drawable/ic_hud"
+            android:title="@string/str_Vertretungen" />
+        <item
+            android:id="@+id/nav_faecherVerwalten"
+            android:icon="@drawable/ic_list"
+            android:title="@string/str_FaeVerwalten" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_einstellungen"
+            android:title="@string/str_Einstellungen" />
+    </group>
+
+    <item android:title="Weiteres">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_ueber"
+                    android:icon="@drawable/ic_info"
+                    android:title="@string/str_ueber" />
+                <item
+                    android:id="@+id/nav_richtlinien"
+                    android:icon="@drawable/ic_rights"
+                    android:title="@string/str_Rights" />
+                <item
+                    android:id="@+id/nav_credits"
+                    android:icon="@drawable/ic_credtis"
+                    android:title="@string/str_Credits"/>
+            </group>
+        </menu>
+    </item>
+
+</menu>

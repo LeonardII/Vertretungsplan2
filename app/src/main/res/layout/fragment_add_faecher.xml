@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout android:id="@+id/addFach_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:divider="?android:dividerHorizontal"
+            android:animateLayoutChanges="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp" />
+
+    </ScrollView>
+
+    <TextView android:id="@+id/addFach_empty"
+        style="?android:textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="32dp"
+        android:text="Füge deine Fächer hinzu"
+        android:textColor="?android:textColorSecondary"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/addFach_inp_num"
+        android:hint="  Die Nummer"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:focusable="false"
+        android:drawableLeft="@drawable/ic_addid"
+        android:layout_toStartOf="@+id/addFach_addBtn"
+        android:layout_alignParentEnd="true"
+        android:phoneNumber="true" />
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/addFach_input"
+        android:hint="  Das Fach"
+        android:drawableLeft="@drawable/ic_addfach"
+        android:layout_above="@+id/addFach_inp_num"
+        android:layout_alignParentStart="true"
+        android:focusable="false"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text=" 2-Stündig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addFach_leistung"
+        android:textAlignment="textStart"
+        android:textColor="?android:attr/textColorHint"
+        android:textSize="17sp"
+        android:layout_alignBaseline="@+id/addFach_inp_num"
+        android:layout_alignBottom="@+id/addFach_inp_num"
+        android:layout_alignParentEnd="true"
+        android:background="@color/invisible"
+        android:drawableLeft="@drawable/ic_clock"
+        android:textAllCaps="false" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_add"
+        android:id="@+id/addFach_addBtn"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:background="@color/invisible"
+        android:layout_alignTop="@+id/addFach_leistung"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

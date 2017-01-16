@@ -1,0 +1,17 @@
+<resources>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+
+    <string name="app_name">Vertretungen</string>
+    <string name="str_FaeVerwalten">Fächer verwalten</string>
+    <string name="str_Einstellungen">Einstellungen</string>
+    <string name="str_ueber">Über</string>
+    <string name="str_Rights">Richtlinien</string>
+    <string name="str_Vertretungen">Übersicht</string>
+    <string name="str_addFriends">Freunde Verwalten</string>
+    <string name="str_Credits">Credits</string>
+    <string name="title_activity_main">Vertretungen</string>
+    <string name="untertitle">die personalisterte Vertretungsapp</string>
+
+    <string name="Verion">Version 1.1</string>
+</resources>
