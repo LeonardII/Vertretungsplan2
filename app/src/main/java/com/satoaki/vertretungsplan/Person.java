@@ -96,12 +96,25 @@ class BackGroundProcess implements Runnable {
     private Event getEvent(String actLine) {
         Event event = new Event();
         Log.i(TAG, "main" + actLine);
+        String[] Alles = actLine.split("</td><td class=\"list\" align=\"center\"");
+        for(int q = 0;q<Alles.length;q++){
+           while(Alles[q].charAt(0)!='>')
+                Alles[q] = Alles[q].substring(1);
+            Alles[q] = Alles[q].substring(1);
+            Log.i(TAG, "getEvent: "+Alles[q]);
+        }
+        event.setStunden(Alles[1]);
+        event.setVertreter(Alles[2]);
+        event.setRaum(Alles[3]);
+        event.setFach(Alles[4]);
+        event.setArt(Alles[5]);
+        Log.i(TAG, "getEvent: ");
         return event;
     }
     private Event getEventTag(String actLine) {
         Event event = new Event();
         StringBuilder Tag = new StringBuilder();
-        Log.i(TAG, "YYY" + actLine);
+        ///Log.i(TAG, "YYY" + actLine);
         String[] Datum = actLine.split("<b>");
         int ind = 0;
         while(Datum[1].charAt(ind)!='<'){
