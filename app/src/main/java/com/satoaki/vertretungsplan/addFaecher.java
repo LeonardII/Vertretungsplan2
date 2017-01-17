@@ -176,7 +176,6 @@ public class addFaecher extends Fragment {
                     KlasseCodiert.append(Fach.toLowerCase());
             }
             KlasseCodiert.append("-"+Id);
-
         }
         return KlasseCodiert.toString();
     }
