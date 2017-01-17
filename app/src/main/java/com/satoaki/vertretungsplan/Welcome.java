@@ -141,9 +141,6 @@ public class Welcome extends AppCompatActivity {
 
     private void coninueLogin() {
         final ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
-        //final TextView anweisung = (TextView)findViewById(R.id.WelcomeText);
-        //anweisung.setVisibility(View.VISIBLE);
-
         final TextView Title = (TextView)findViewById(R.id.VertretungenTitle);
         final TextView Title2 = (TextView)findViewById(R.id.WelcomeTitle);
         Title2.setTranslationX(-1000f);
