@@ -99,6 +99,7 @@ public class addFaecher extends Fragment {
                     inp_Fach.setText(inp_Fach.getText()+"-"+imp_Id.getText());
                 if(LeistungsKurs)
                     inp_Fach.setText("(LK) "+inp_Fach.getText());
+                codiereKlasse(b,inp_Fach.getText().toString(),imp_Id.getText().toString());
                 toggle();
                 addItem();
             }
@@ -107,6 +108,7 @@ public class addFaecher extends Fragment {
             Log.i(TAG, "onKey: Invalid Fach");
         }
     }
+
 
     private void toggleLeistung(){
         if(LeistungsKurs){
@@ -158,6 +160,15 @@ public class addFaecher extends Fragment {
             if(KeyEvent.ACTION_DOWN==keyEvent.getAction()&&(i==KeyEvent.KEYCODE_NUMPAD_ENTER||i==KeyEvent.KEYCODE_ENTER))
                 checkFach();
             return false;
+        }
+    }
+    private void codiereKlasse(int id,String Fach, String Id) {
+        StringBuilder KlasseCodiert = new StringBuilder();
+        if (Integer.parseInt(S.p.get(0).KlasseId) < 66)
+            KlasseCodiert.append(S.ValidFaecherKuerzel[id]);
+        else {
+            if (LeistungsKurs && id > 3)
+                KlasseCodiert.append(Fach.toString().toLowerCase());
         }
     }
 }
