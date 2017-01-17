@@ -99,23 +99,6 @@
                 android:layout_alignParentEnd="true"
                 android:id="@+id/Welcome_version" />
 
-            <AutoCompleteTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:drawableLeft="@drawable/ic_book"
-                android:id="@+id/Welcome_inp_klasse"
-                android:hint="Deine Klasse"
-                android:pointerIcon="none"
-                android:textColorLink="?attr/colorControlNormal"
-                android:textColor="?attr/colorControlNormal"
-                style="@style/AppTheme.NoActionBar"
-                android:backgroundTint="?attr/colorControlNormal"
-                android:layout_alignBottom="@+id/WelcomeLogo"
-                android:layout_alignStart="@+id/WelcomeLogo"
-                android:layout_alignEnd="@+id/WelcomeLogo" />
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -127,6 +110,22 @@
                 android:layout_below="@+id/WelcomeLogo"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="21dp" />
+
+            <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/welcome_numberPicker"
+                android:layout_below="@+id/WelcomeLogo"
+                android:layout_centerHorizontal="true" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/checkbox_on_background"
+                android:layout_above="@+id/WelcomeCredits"
+                android:layout_alignEnd="@+id/welcome_numberPicker"
+                android:id="@+id/imageButton" />
+
 
         </RelativeLayout>
     </FrameLayout>

@@ -3,31 +3,33 @@ package com.satoaki.vertretungsplan;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.os.Handler;
+import android.support.annotation.ColorInt;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Welcome extends AppCompatActivity {
-    static boolean firsttime;
-    static boolean changeColor = true;
-    static TranslateAnimation mAnimation;
-    final String TAG = "main Welcome";
     private final Handler mHideHandler = new Handler();
-    AutoCompleteTextView Inp_Klasse;
-    ImageView slider;
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
@@ -60,12 +62,33 @@ public class Welcome extends AppCompatActivity {
         }
     };
 
+    AutoCompleteTextView Inp_Klasse;
+    ImageView slider;
+    NumberPicker numberPicker;
+    ImageButton imageButton;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        Inp_Klasse = (AutoCompleteTextView) findViewById(R.id.Welcome_inp_klasse);
-        Inp_Klasse.setVisibility(View.INVISIBLE);
+        /*Inp_Klasse = (AutoCompleteTextView) findViewById(R.id.Welcome_inp_klasse);
+        Inp_Klasse.animate().alpha(0.0f).setDuration(1);
         Inp_Klasse.setFocusable(false);
+        */
+
+        numberPicker = (NumberPicker) findViewById(R.id.welcome_numberPicker);
+        numberPicker.animate().alpha(0.0f).setDuration(1);
+        numberPicker.setFocusable(false);
+        numberPicker.setMinValue(1);
+        numberPicker.setMaxValue(S.ValidKlassen.length);
+
+        imageButton=(ImageButton)findViewById(R.id.imageButton);
+        imageButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //ok
+                return true;
+            }
+        });
+
         slider= (ImageView)findViewById(R.id.Welcome_slider);
         slider.animate().translationYBy(500);
         mVisible = true;
@@ -80,7 +103,7 @@ public class Welcome extends AppCompatActivity {
             public void run() {
                 long t = System.currentTimeMillis();
                 firsttime = S.init();
-                while (t + 500 > System.currentTimeMillis()) {}
+                while (t + 500 > System.currentTimeMillis()) {};
                 if(firsttime){
                     doLogin();
                 }else {doEnter();}
@@ -109,7 +132,7 @@ public class Welcome extends AppCompatActivity {
         mAnimation.setRepeatCount(-1);
         mAnimation.setRepeatMode(Animation.REVERSE);
         slider.setAnimation(mAnimation);
-
+        
         mContentView.setOnTouchListener(new View.OnTouchListener() {
             boolean touched = false;
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -127,12 +150,21 @@ public class Welcome extends AppCompatActivity {
         ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
         final TextView Title = (TextView)findViewById(R.id.WelcomeTitle);
         TextView Sloagen = (TextView)findViewById(R.id.WelcomeSloagen);
-        logo.animate().translationYBy(-310).setDuration(1000);
-        Title.animate().translationYBy(300).alpha(0.0f).setDuration(500).setListener(new AnimatorListenerAdapter() {
+        Title.animate().alpha(0.0f).translationX(31).setDuration(100).setListener((new AnimatorListenerAdapter() {
+            @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 Title.setText("Willkommen");
-                Title.animate().alpha(1.0f).translationYBy(-610).setDuration(1000).setListener(new AnimatorListenerAdapter() {
+                Title.animate().translationX(-310).translationY(-310);
+            }
+        }));
+
+
+        logo.animate().translationYBy(-310).setDuration(1000).setListener(new AnimatorListenerAdapter() {
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+
+                Title.animate().alpha(1.0f).setDuration(1).translationX(0).setDuration(1000).setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
@@ -141,16 +173,23 @@ public class Welcome extends AppCompatActivity {
             }
         });
         Sloagen.animate().translationYBy(-310).setDuration(1000);
-        Inp_Klasse.setVisibility(View.VISIBLE);
+        /*
         Inp_Klasse.setFocusable(true);
         Inp_Klasse.setFocusableInTouchMode(true);
         Inp_Klasse.animate().translationYBy(-320).setDuration(1000);
         Inp_Klasse.animate().alpha(1.0f).setDuration(1000);
+        */
+        numberPicker.setFocusable(true);
+        numberPicker.setFocusableInTouchMode(true);
+        numberPicker.animate().alpha(1.0f).translationYBy(-520).setDuration(1677);
+        numberPicker.setDisplayedValues(S.ValidKlassen);
+
+        /*
         changeColor = true;
         new Thread(new Runnable() {
             public void run() {
                 while (changeColor){
-                    while (Inp_Klasse.hasFocus()){
+                    while (numberPicker.hasFocus()){
                         try{
                             getWindow().setStatusBarColor(Color.WHITE);
                         }catch (Exception e){Log.i(TAG, "Failed to chance Statusbarcolor");
@@ -160,14 +199,7 @@ public class Welcome extends AppCompatActivity {
                 }
             }
         }).start();
-        Inp_Klasse.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if(i==KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_DOWN){
-                    boolean found = false;
-                    if(Inp_Klasse.getText().toString().toLowerCase().contains("ks1"))
-                            Inp_Klasse.setText("Ks-1");
-                    if(Inp_Klasse.getText().toString().toLowerCase().contains("ks2"))
-                        Inp_Klasse.setText("Ks-2");
+
                     for(int b=0;b<S.ValidKlassen.length;b++)
                         if (!found && S.ValidKlassen[b].toLowerCase().contains(Inp_Klasse.getText().toString().toLowerCase())) {
                             S.p.add(new Person("Du", S.ValidKlassen[b]));
@@ -182,7 +214,7 @@ public class Welcome extends AppCompatActivity {
                 }
                 return false;
             }
-        });
+        });*/
 
     }
 
@@ -211,9 +243,12 @@ public class Welcome extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHidePart2Runnable);
         mHideHandler.postDelayed(mShowPart2Runnable,0);
     }
-
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+    final String TAG = "main Welcome";
+    static boolean firsttime;
+    static boolean changeColor = true;
+    static TranslateAnimation mAnimation;
 }
