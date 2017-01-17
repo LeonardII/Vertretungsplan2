@@ -167,7 +167,7 @@ public class addFaecher extends Fragment {
         if (Integer.parseInt(S.p.get(0).KlasseId) < 66)
             KlasseCodiert.append(S.ValidFaecherKuerzel[id]);
         else {
-            if(id < 4){
+            if(id <= S.unbearbeitetLassen){
                 KlasseCodiert.append(Fach);
             }else {
                 if (LeistungsKurs)

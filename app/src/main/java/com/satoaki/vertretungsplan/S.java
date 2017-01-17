@@ -125,6 +125,7 @@ public class S {
     static String[] ValidKlassen = new String[68];
     static String[] ValidArten  = { "Vertretung", "Raum", "Vtr. ohne Lehrer", "Entfall" };
     static File Ordner;
+    static final int unbearbeitetLassen = 3;
     static final String TAG = "main Static";
 }
 
