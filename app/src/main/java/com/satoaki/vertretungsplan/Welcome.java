@@ -62,10 +62,9 @@ public class Welcome extends AppCompatActivity {
         }
     };
 
-    AutoCompleteTextView Inp_Klasse;
     ImageView slider;
     NumberPicker numberPicker;
-    ImageButton imageButton;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
@@ -77,18 +76,11 @@ public class Welcome extends AppCompatActivity {
         numberPicker = (NumberPicker) findViewById(R.id.welcome_numberPicker);
         numberPicker.animate().alpha(0.0f).setDuration(1);
         numberPicker.setFocusable(false);
-        numberPicker.setMinValue(1);
-        numberPicker.setMaxValue(S.ValidKlassen.length);
+        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(S.ValidKlassen.length-1
+        );
 
-        imageButton=(ImageButton)findViewById(R.id.imageButton);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                S.p.add(new Person("Du","Ks-1"));
-                doEnter();
-                changeColor = false;
-            }
-        });
+
 
         slider= (ImageView)findViewById(R.id.Welcome_slider);
         slider.animate().translationYBy(500);
@@ -148,74 +140,42 @@ public class Welcome extends AppCompatActivity {
     }
 
     private void coninueLogin() {
-        ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
-        final TextView Title = (TextView)findViewById(R.id.WelcomeTitle);
-        TextView Sloagen = (TextView)findViewById(R.id.WelcomeSloagen);
-        Title.animate().alpha(0.0f).translationX(31).setDuration(100).setListener((new AnimatorListenerAdapter() {
+        final ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
+        final TextView anweisung = (TextView)findViewById(R.id.WelcomeText);
+        //anweisung.setVisibility(View.VISIBLE);
+
+        final TextView Title = (TextView)findViewById(R.id.VertretungenTitle);
+        final TextView Title2 = (TextView)findViewById(R.id.WelcomeTitle);
+        Title2.setTranslationX(-1000f);
+        final TextView Sloagen = (TextView)findViewById(R.id.WelcomeSloagen);
+        ImageButton imageButton=(ImageButton)findViewById(R.id.imageButton);
+        imageButton.animate().alpha(0f);
+        numberPicker.setFocusableInTouchMode(true);
+        numberPicker.setDisplayedValues(S.ValidKlassen);
+        numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        numberPicker.setValue(1);
+
+        imageButton.setVisibility(View.VISIBLE);
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                Title.setText("Willkommen");
-                Title.animate().translationX(-310).translationY(-310);
-            }
-        }));
-
-
-        logo.animate().translationYBy(-310).setDuration(1000).setListener(new AnimatorListenerAdapter() {
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-
-                Title.animate().alpha(1.0f).setDuration(1).translationX(0).setDuration(1000).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                    }
-                });
+            public void onClick(View view) {
+                if(numberPicker.getValue()!=0){
+                    Log.d("State",String.valueOf(numberPicker.getValue())+" "+S.ValidKlassen[numberPicker.getValue()]);
+                    S.p.add(new Person("Du",S.ValidKlassen[numberPicker.getValue()]));
+                    doEnter();
+                }
             }
         });
-        Sloagen.animate().translationYBy(-310).setDuration(1000);
-        /*
-        Inp_Klasse.setFocusable(true);
-        Inp_Klasse.setFocusableInTouchMode(true);
-        Inp_Klasse.animate().translationYBy(-320).setDuration(1000);
-        Inp_Klasse.animate().alpha(1.0f).setDuration(1000);
-        */
-        numberPicker.setFocusable(true);
-        numberPicker.setFocusableInTouchMode(true);
-        numberPicker.animate().alpha(1.0f).translationYBy(-520).setDuration(1677);
-        numberPicker.setDisplayedValues(S.ValidKlassen);
+        imageButton.animate().alpha(1f).setDuration(750);
+        Title.animate().alpha(0f).translationX(500).setDuration(125);
+        Sloagen.animate().translationYBy(-310).setDuration(1250);
+        logo.animate().translationYBy(-310).setDuration(1250);
+        numberPicker.animate().alpha(1f).translationY(-310).setDuration(1250);
+        Title2.setAlpha(0f);
+        Title2.setVisibility(View.VISIBLE);
 
-        /*
-        changeColor = true;
-        new Thread(new Runnable() {
-            public void run() {
-                while (changeColor){
-                    while (numberPicker.hasFocus()){
-                        try{
-                            getWindow().setStatusBarColor(Color.WHITE);
-                        }catch (Exception e){Log.i(TAG, "Failed to chance Statusbarcolor");
-                        }
-                        changeColor = false;
-                    }
-                }
-            }
-        }).start();
-
-                    for(int b=0;b<S.ValidKlassen.length;b++)
-                        if (!found && S.ValidKlassen[b].toLowerCase().contains(Inp_Klasse.getText().toString().toLowerCase())) {
-                            S.p.add(new Person("Du", S.ValidKlassen[b]));
-                            found = true;
-                            doEnter();
-                            changeColor = false;
-                        }
-                    if (!found){
-                        Inp_Klasse.setText("");
-                        Toast.makeText(getApplicationContext(),"die Klasse ist nicht vorhanden!",Toast.LENGTH_SHORT).show();
-                    }
-                }
-                return false;
-            }
-        });*/
+        anweisung.animate().alpha(1f).setDuration(100).setStartDelay(1400);
+        Title2.animate().translationX(0).alpha(1f).setDuration(600).setStartDelay(700);
 
     }
 
