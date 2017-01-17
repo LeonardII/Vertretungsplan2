@@ -8,6 +8,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="Einstellungen" />
+
+    <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <CheckBoxPreference
+            android:key="pref_sync"
+            android:title="name"
+            android:summary="dein name"
+            android:defaultValue="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </PreferenceScreen>
 
 </FrameLayout>
