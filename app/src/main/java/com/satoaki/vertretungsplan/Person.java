@@ -20,6 +20,7 @@ public class Person {
     String KlasseId;
     ArrayList<String> Faecher;
     ArrayList<Event> event;
+    boolean u2date = false;
 
     public Person(String name, String klasse) {
         Name = name;
@@ -86,11 +87,13 @@ class BackGroundProcess implements Runnable {
             }
             scanner.close();
             S.hasInternet = true;
+            Log.i(TAG, "run: hasfinished");
         } catch (Exception e) {
             Log.i(TAG, "getQuellcode: Error: Kein Internet:");
             e.printStackTrace();
             S.hasInternet = false;
         }
+        person.u2date = true;
     }
 
     private Event getEvent(String actLine) {

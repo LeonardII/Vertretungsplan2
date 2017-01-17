@@ -39,4 +39,10 @@ public class Event {
         Log.i(TAG, "setTag: "+tag);
     }
     final String TAG = "main Event ";
+
+    public String mergeEvent(){
+        if(Tag!="")
+            return Tag;
+        return Stunden+" "+Fach+" bei "+Vertreter+" "+Art+" in "+Raum;
+    }
 }
