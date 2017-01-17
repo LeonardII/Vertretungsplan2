@@ -143,15 +143,15 @@ public class Welcome extends AppCompatActivity {
         final ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
         final TextView Title = (TextView)findViewById(R.id.VertretungenTitle);
         final TextView Title2 = (TextView)findViewById(R.id.WelcomeTitle);
-        Title2.animate().alpha(0f).setDuration(1);
+        Title2.setTranslationX(-1000f);
         final TextView Sloagen = (TextView)findViewById(R.id.WelcomeSloagen);
-        ImageButton imageButton;
-
+        ImageButton imageButton=(ImageButton)findViewById(R.id.imageButton);
+        imageButton.animate().alpha(0f);
         numberPicker.setFocusable(true);
         numberPicker.setFocusableInTouchMode(true);
         numberPicker.setDisplayedValues(S.ValidKlassen);
 
-        imageButton=(ImageButton)findViewById(R.id.imageButton);
+        imageButton.setVisibility(View.VISIBLE);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,13 +162,15 @@ public class Welcome extends AppCompatActivity {
                 }
             }
         });
-
-        Title.animate().alpha(0f).translationX(310).setDuration(1000);
-        Sloagen.animate().translationYBy(-310).setDuration(3000);
-        logo.animate().translationYBy(-310).setDuration(3000);
-        numberPicker.animate().alpha(1f).translationY(-310).setDuration(3000);
+        imageButton.animate().alpha(1f).setDuration(750);
+        Title.animate().alpha(0f).translationX(500).setDuration(125);
+        Sloagen.animate().translationYBy(-310).setDuration(1250);
+        logo.animate().translationYBy(-310).setDuration(1250);
+        numberPicker.animate().alpha(1f).translationY(-310).setDuration(1250);
+        Title2.setAlpha(0f);
         Title2.setVisibility(View.VISIBLE);
-        Title2.animate().translationX(0).alpha(1.0f).setDuration(1000).setStartDelay(1000);
+
+        Title2.animate().translationX(0).alpha(1f).setDuration(600).setStartDelay(1000);
 
 
 

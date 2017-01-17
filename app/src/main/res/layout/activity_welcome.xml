@@ -98,14 +98,6 @@
                 android:layout_below="@+id/WelcomeLogo"
                 android:layout_centerHorizontal="true" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/checkbox_on_background"
-                android:layout_above="@+id/WelcomeCredits"
-                android:layout_alignEnd="@+id/welcome_numberPicker"
-                android:id="@+id/imageButton" />
-
             <ImageView
                 app:srcCompat="@drawable/fsglogo"
                 android:id="@+id/WelcomeLogo"
@@ -135,6 +127,16 @@
                 android:layout_alignStart="@+id/WelcomeLogo"
                 android:layout_marginBottom="75dp"
                 android:visibility="gone"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_media_play"
+                android:id="@+id/imageButton"
+                android:layout_above="@+id/WelcomeCredits"
+                android:layout_centerHorizontal="true"
+                android:elevation="0dp"
+                android:visibility="gone" />
 
 
         </RelativeLayout>
