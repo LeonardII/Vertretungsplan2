@@ -125,12 +125,16 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_media_play"
+                app:srcCompat="@drawable/ic_haken"
                 android:id="@+id/imageButton"
                 android:layout_above="@+id/WelcomeCredits"
                 android:layout_centerHorizontal="true"
                 android:elevation="0dp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:tint="@color/colorAccent"
+                android:background="@color/invisible"
+                android:scaleX="0.4"
+                android:scaleY="0.4" />
 
 
         </RelativeLayout>

@@ -143,7 +143,7 @@ public class Welcome extends AppCompatActivity {
         final ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
         final TextView Title = (TextView)findViewById(R.id.VertretungenTitle);
         final TextView Title2 = (TextView)findViewById(R.id.WelcomeTitle);
-        Title2.animate().translationX(-1000f).setDuration(1000);
+        Title2.setTranslationX(-1000f);
         final TextView Sloagen = (TextView)findViewById(R.id.WelcomeSloagen);
         ImageButton imageButton=(ImageButton)findViewById(R.id.imageButton);
         imageButton.animate().alpha(0f);
