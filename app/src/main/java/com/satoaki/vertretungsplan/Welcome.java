@@ -172,61 +172,7 @@ public class Welcome extends AppCompatActivity {
 
         Title2.animate().translationX(0).alpha(1f).setDuration(600).setStartDelay(1000);
 
-
-
-
-
-
-
-
-
-
-
-                /*
-                Inp_Klasse.setFocusable(true);
-                Inp_Klasse.setFocusableInTouchMode(true);
-                Inp_Klasse.animate().translationYBy(-320).setDuration(1000);
-                Inp_Klasse.animate().alpha(1.0f).setDuration(1000);
-                */
-
-
     }
-
-
-
-        /*
-        changeColor = true;
-        new Thread(new Runnable() {
-            public void run() {
-                while (changeColor){
-                    while (numberPicker.hasFocus()){
-                        try{
-                            getWindow().setStatusBarColor(Color.WHITE);
-                        }catch (Exception e){Log.i(TAG, "Failed to chance Statusbarcolor");
-                        }
-                        changeColor = false;
-                    }
-                }
-            }
-        }).start();
-
-                    for(int b=0;b<S.ValidKlassen.length;b++)
-                        if (!found && S.ValidKlassen[b].toLowerCase().contains(Inp_Klasse.getText().toString().toLowerCase())) {
-                            S.p.add(new Person("Du", S.ValidKlassen[b]));
-                            found = true;
-                            doEnter();
-                            changeColor = false;
-                        }
-                    if (!found){
-                        Inp_Klasse.setText("");
-                        Toast.makeText(getApplicationContext(),"die Klasse ist nicht vorhanden!",Toast.LENGTH_SHORT).show();
-                    }
-                }
-                return false;
-            }
-        });*/
-
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
