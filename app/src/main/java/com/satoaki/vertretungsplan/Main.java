@@ -59,13 +59,10 @@ public class Main extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_ueber) {
-
         } else if (id == R.id.nav_settings) {
-
             fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.content_main,new Einstellungen()).commit();
         } else if (id == R.id.nav_richtlinien) {

@@ -78,7 +78,7 @@ public class addFaecher extends Fragment {
                 toggle();
                 if(iconplus) {
                     iconplus = false;
-                    btnAddFach.setIcon(R.drawable.ic_remove);
+                    btnAddFach.setIcon(R.drawable.ic_haken);
                 }else {
                     iconplus = true;
                     btnAddFach.setIcon(R.drawable.ic_add);
