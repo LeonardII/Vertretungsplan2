@@ -62,10 +62,9 @@ public class Welcome extends AppCompatActivity {
         }
     };
 
-    AutoCompleteTextView Inp_Klasse;
     ImageView slider;
     NumberPicker numberPicker;
-    ImageButton imageButton;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
@@ -77,18 +76,11 @@ public class Welcome extends AppCompatActivity {
         numberPicker = (NumberPicker) findViewById(R.id.welcome_numberPicker);
         numberPicker.animate().alpha(0.0f).setDuration(1);
         numberPicker.setFocusable(false);
-        numberPicker.setMinValue(1);
-        numberPicker.setMaxValue(S.ValidKlassen.length);
+        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(S.ValidKlassen.length-1
+        );
 
-        imageButton=(ImageButton)findViewById(R.id.imageButton);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                S.p.add(new Person("Du","Ks-1"));
-                doEnter();
-                changeColor = false;
-            }
-        });
+
 
         slider= (ImageView)findViewById(R.id.Welcome_slider);
         slider.animate().translationYBy(500);
@@ -148,42 +140,57 @@ public class Welcome extends AppCompatActivity {
     }
 
     private void coninueLogin() {
-        ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
-        final TextView Title = (TextView)findViewById(R.id.WelcomeTitle);
-        TextView Sloagen = (TextView)findViewById(R.id.WelcomeSloagen);
-        Title.animate().alpha(0.0f).translationX(31).setDuration(100).setListener((new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                Title.setText("Willkommen");
-                Title.animate().translationX(-310).translationY(-310);
-            }
-        }));
+        final ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
+        final TextView Title = (TextView)findViewById(R.id.VertretungenTitle);
+        final TextView Title2 = (TextView)findViewById(R.id.WelcomeTitle);
+        Title2.animate().alpha(0f).setDuration(1);
+        final TextView Sloagen = (TextView)findViewById(R.id.WelcomeSloagen);
+        ImageButton imageButton;
 
-
-        logo.animate().translationYBy(-310).setDuration(1000).setListener(new AnimatorListenerAdapter() {
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-
-                Title.animate().alpha(1.0f).setDuration(1).translationX(0).setDuration(1000).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                    }
-                });
-            }
-        });
-        Sloagen.animate().translationYBy(-310).setDuration(1000);
-        /*
-        Inp_Klasse.setFocusable(true);
-        Inp_Klasse.setFocusableInTouchMode(true);
-        Inp_Klasse.animate().translationYBy(-320).setDuration(1000);
-        Inp_Klasse.animate().alpha(1.0f).setDuration(1000);
-        */
         numberPicker.setFocusable(true);
         numberPicker.setFocusableInTouchMode(true);
-        numberPicker.animate().alpha(1.0f).translationYBy(-520).setDuration(1677);
         numberPicker.setDisplayedValues(S.ValidKlassen);
+
+        imageButton=(ImageButton)findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(numberPicker.getValue()!=0){
+                    Log.d("State",String.valueOf(numberPicker.getValue())+" "+S.ValidKlassen[numberPicker.getValue()]);
+                    S.p.add(new Person("Du",S.ValidKlassen[numberPicker.getValue()]));
+                    doEnter();
+                }
+            }
+        });
+
+        Title.animate().alpha(0f).translationX(310).setDuration(1000);
+        Sloagen.animate().translationYBy(-310).setDuration(3000);
+        logo.animate().translationYBy(-310).setDuration(3000);
+        numberPicker.animate().alpha(1f).translationY(-310).setDuration(3000);
+        Title2.setVisibility(View.VISIBLE);
+        Title2.animate().translationX(0).alpha(1.0f).setDuration(1000).setStartDelay(1000);
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                Inp_Klasse.setFocusable(true);
+                Inp_Klasse.setFocusableInTouchMode(true);
+                Inp_Klasse.animate().translationYBy(-320).setDuration(1000);
+                Inp_Klasse.animate().alpha(1.0f).setDuration(1000);
+                */
+
+
+    }
+
+
 
         /*
         changeColor = true;
@@ -217,7 +224,7 @@ public class Welcome extends AppCompatActivity {
             }
         });*/
 
-    }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

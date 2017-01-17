@@ -60,30 +60,10 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:text="@string/untertitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/WelcomeTitle"
-                android:layout_alignStart="@+id/WelcomeLogo"
-                android:layout_marginTop="27dp"
-                android:id="@+id/WelcomeSloagen"
-                android:layout_alignEnd="@+id/WelcomeLogo"
-                android:textSize="12sp" />
-
-            <ImageView
-                app:srcCompat="@drawable/fsglogo"
-                android:id="@+id/WelcomeLogo"
-                android:layout_width="200dp"
-                android:layout_height="430dp"
-                android:layout_marginBottom="42dp"
-                android:layout_above="@+id/ignore1"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
                 android:text="@string/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/WelcomeTitle"
+                android:id="@+id/VertretungenTitle"
                 android:textColor="?attr/colorControlNormal"
                 android:textStyle="normal|bold"
                 android:textSize="24sp"
@@ -125,6 +105,36 @@
                 android:layout_above="@+id/WelcomeCredits"
                 android:layout_alignEnd="@+id/welcome_numberPicker"
                 android:id="@+id/imageButton" />
+
+            <ImageView
+                app:srcCompat="@drawable/fsglogo"
+                android:id="@+id/WelcomeLogo"
+                android:layout_width="200dp"
+                android:layout_height="430dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:text="@string/untertitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:id="@+id/WelcomeSloagen"
+                android:textSize="12sp"
+                android:layout_alignTop="@+id/VertretungenTitle"
+                android:layout_alignStart="@+id/WelcomeLogo" />
+
+            <TextView
+                android:text="Wilkommen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/WelcomeTitle"
+                android:textSize="24sp"
+                android:textStyle="normal|bold"
+                android:layout_above="@+id/VertretungenTitle"
+                android:layout_alignStart="@+id/WelcomeLogo"
+                android:layout_marginBottom="75dp"
+                android:visibility="gone"/>
 
 
         </RelativeLayout>
