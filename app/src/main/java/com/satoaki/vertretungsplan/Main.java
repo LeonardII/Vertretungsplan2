@@ -66,6 +66,8 @@ public class Main extends AppCompatActivity
 
         } else if (id == R.id.nav_settings) {
 
+            fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.content_main,new Einstellungen()).commit();
         } else if (id == R.id.nav_richtlinien) {
 
         } else if (id == R.id.nav_hud) {
