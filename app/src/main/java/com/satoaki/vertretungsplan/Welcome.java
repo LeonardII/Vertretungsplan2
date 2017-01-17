@@ -141,15 +141,19 @@ public class Welcome extends AppCompatActivity {
 
     private void coninueLogin() {
         final ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
+        final TextView anweisung = (TextView)findViewById(R.id.WelcomeText);
+        //anweisung.setVisibility(View.VISIBLE);
+
         final TextView Title = (TextView)findViewById(R.id.VertretungenTitle);
         final TextView Title2 = (TextView)findViewById(R.id.WelcomeTitle);
         Title2.setTranslationX(-1000f);
         final TextView Sloagen = (TextView)findViewById(R.id.WelcomeSloagen);
         ImageButton imageButton=(ImageButton)findViewById(R.id.imageButton);
         imageButton.animate().alpha(0f);
-        numberPicker.setFocusable(true);
         numberPicker.setFocusableInTouchMode(true);
         numberPicker.setDisplayedValues(S.ValidKlassen);
+        numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        numberPicker.setValue(1);
 
         imageButton.setVisibility(View.VISIBLE);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +174,8 @@ public class Welcome extends AppCompatActivity {
         Title2.setAlpha(0f);
         Title2.setVisibility(View.VISIBLE);
 
-        Title2.animate().translationX(0).alpha(1f).setDuration(600).setStartDelay(1000);
+        anweisung.animate().alpha(1f).setDuration(100).setStartDelay(1400);
+        Title2.animate().translationX(0).alpha(1f).setDuration(600).setStartDelay(700);
 
     }
 
