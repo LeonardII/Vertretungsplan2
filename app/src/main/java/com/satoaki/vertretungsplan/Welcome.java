@@ -64,15 +64,11 @@ public class Welcome extends AppCompatActivity {
 
     ImageView slider;
     NumberPicker numberPicker;
+    ImageButton continueButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        /*Inp_Klasse = (AutoCompleteTextView) findViewById(R.id.Welcome_inp_klasse);
-        Inp_Klasse.animate().alpha(0.0f).setDuration(1);
-        Inp_Klasse.setFocusable(false);
-        */
-
         numberPicker = (NumberPicker) findViewById(R.id.welcome_numberPicker);
         numberPicker.animate().alpha(0.0f).setDuration(1);
         numberPicker.setFocusable(false);
@@ -115,7 +111,6 @@ public class Welcome extends AppCompatActivity {
         Credits.animate().alpha(0.0f).setDuration(1000);
         Version.animate().alpha(0.0f).setDuration(1000);
         slider.animate().translationYBy(-400).setDuration(500);
-
         mAnimation = new TranslateAnimation(
                 TranslateAnimation.ABSOLUTE, 0f,
                 TranslateAnimation.ABSOLUTE, 0f,
@@ -125,7 +120,14 @@ public class Welcome extends AppCompatActivity {
         mAnimation.setRepeatCount(-1);
         mAnimation.setRepeatMode(Animation.REVERSE);
         slider.setAnimation(mAnimation);
-        
+        continueButton =(ImageButton)findViewById(R.id.imageButton);
+        continueButton.animate().translationYBy(700).setDuration(1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                continueButton.setVisibility(View.VISIBLE);
+            }
+        });
         mContentView.setOnTouchListener(new View.OnTouchListener() {
             boolean touched = false;
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -145,15 +147,11 @@ public class Welcome extends AppCompatActivity {
         final TextView Title2 = (TextView)findViewById(R.id.WelcomeTitle);
         Title2.setTranslationX(-1000f);
         final TextView Sloagen = (TextView)findViewById(R.id.WelcomeSloagen);
-        ImageButton imageButton=(ImageButton)findViewById(R.id.imageButton);
-        imageButton.animate().alpha(0f);
         numberPicker.setFocusableInTouchMode(true);
         numberPicker.setDisplayedValues(S.ValidKlassen);
         numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         numberPicker.setValue(1);
-
-        imageButton.setVisibility(View.VISIBLE);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(numberPicker.getValue()!=0){
@@ -163,7 +161,7 @@ public class Welcome extends AppCompatActivity {
                 }
             }
         });
-        imageButton.animate().alpha(1f).setDuration(750);
+        continueButton.animate().translationY(0).setDuration(800);
         Title.animate().alpha(0f).translationX(500).setDuration(125);
         Sloagen.animate().translationYBy(-310).setDuration(1250);
         logo.animate().translationYBy(-310).setDuration(1250);

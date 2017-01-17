@@ -5,7 +5,7 @@
     <color name="colorAccent">#d3000000</color>
     <color name="invisible">#0000ffff</color>
     <color name="white">#ffffff</color>
-    <color name="black_overlay">#66000000</color>
+    <color name="black_overlay">#86000000</color>
     <color name="icon">#66000000</color>
 
 </resources>
