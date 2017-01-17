@@ -105,10 +105,10 @@ public class S {
     static String[] VaidFaecherName = {"Spanisch","Italienisch","Evangelische Religion","Katholische Religion","Religion(Leistungskurs)","Deutsch","Englisch","Französisch","Latein","Chinesisch","Russisch",
             "Mathe","Ethik", "Informatik","Physik","Chemie","Biologie","Natur Phänomene","Naturwissenschaften und Technik",
             "Bildene Kunst","Gemeinschaftskunde","Geschichte","Erdkunde","Medien","Sport(Gemischt)","Sport(Weiblich)","Sport(Männlich)","Klassenlehrerin",
-            "Literatur","Astronomie","Wirtschaft","Darstellende Geometrie","Psychologie","Seminarkurs","Kunstprofil intermedialer Kommunikation",};
+            "Literatur","Astronomie","Wirtschaft","Darstellende Geometrie","Psychologie","Seminarkurs","Kunstprofil intermedialer Kommunikation","Musik"};
     static String[] ValidFaecherKuerzel = {"Spa","Ita","evR","kR","Rel","D","E","F","L","Chi","rus",
             "M","Eth","inf","Ph","Ch","Bio","NP","NwT","Bk","Gk","G","Ek","Medien","SPO","SW","SM","KL",
-            "lit","ast","wir","dg","psy","sem","KimKo"};
+            "lit","ast","wir","dg","psy","sem","KimKo","Mu"};
     static String[] ValidKlassen = new String[68];
     static String[] ValidArten  = { "Vertretung", "Raum", "Vtr. ohne Lehrer", "Entfall" };
     static File Ordner;

@@ -62,10 +62,12 @@ public class addFaecher extends Fragment {
                 toggleLeistung();
             }
         });
+        maddFachView.setVisibility(View.VISIBLE);
         return v;
     }
 
     boolean iconplus = true;
+    //TODO: Enter on Klick
     public void onPrepareOptionsMenu(Menu menu) {
         final MenuItem btnAddFach = menu.findItem(R.id.actionBar_addFach);
         btnAddFach.setVisible(true);
@@ -100,7 +102,6 @@ public class addFaecher extends Fragment {
                     inp_Fach.setText(inp_Fach.getText()+"-"+imp_Id.getText());
                 if(LeistungsKurs)
                     inp_Fach.setText("(LK) "+inp_Fach.getText());
-                toggle();
                 addItem();
             }
         if (!found){
@@ -133,7 +134,6 @@ public class addFaecher extends Fragment {
             imp_Id.setFocusableInTouchMode(false);
             inp_Fach.setFocusableInTouchMode(false);
             getMaddFachViewFake.setVisibility(View.GONE);
-            iconplus = false;
             imp_Id.setText("");
         }
     }
@@ -153,6 +153,7 @@ public class addFaecher extends Fragment {
         });
         mContainerView.addView(newView, 0);
         inp_Fach.setText("");
+        imp_Id.setText("");
     }
 
     class keyListener implements View.OnKeyListener {
