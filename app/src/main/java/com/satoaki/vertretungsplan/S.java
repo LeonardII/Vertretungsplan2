@@ -32,7 +32,6 @@ import java.util.Calendar;
  * Created by satoa on 14.01.2017.
  */
 //TODO: if Kursstufe Chi ->Chin
-//TODO: ersten 4 (0-3) veraendern sich nicht
 public class S {
 
     static ArrayList<Person> p;
@@ -101,18 +100,6 @@ public class S {
         }
         ValidKlassen[k]="Ks-1";
         ValidKlassen[k+1]="Ks-2";
-    }
-    private String createUrl(String Klasse){
-        return "http://www.fsg-marbach.de/fileadmin/bilder/unterricht/vertretungsplanung/Klassen/"+getKalenderWoche()+"/w/w000"+Klasse+".htm";
-    }
-
-    private String getKalenderWoche() {
-        Calendar cal = Calendar.getInstance();
-        int ICalW = cal.get(Calendar.WEEK_OF_YEAR);
-        String SCalW = String.valueOf(ICalW);
-        if (ICalW<10)
-            SCalW = "0"+SCalW;
-        return SCalW;
     }
     static String EinstellWerte = "001";
     static String[] VaidFaecherName = {"Spanisch","Italienisch","Evangelische Religion","Katholische Religion","Religion(Leistungskurs)","Deutsch","Englisch","Französisch","Latein","Chinesisch","Russisch",

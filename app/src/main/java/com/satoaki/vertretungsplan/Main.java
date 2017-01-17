@@ -69,8 +69,12 @@ public class Main extends AppCompatActivity
         } else if (id == R.id.nav_richtlinien) {
 
         } else if (id == R.id.nav_hud) {
+            fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.content_main,new Vertretungen()).commit();
 
         } else if (id == R.id.nav_faecherVerwalten) {
+            fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.content_main,new addFaecher()).commit();
 
         } else if (id == R.id.nav_credits) {
 
