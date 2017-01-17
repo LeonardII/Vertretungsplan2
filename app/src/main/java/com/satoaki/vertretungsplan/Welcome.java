@@ -81,11 +81,12 @@ public class Welcome extends AppCompatActivity {
         numberPicker.setMaxValue(S.ValidKlassen.length);
 
         imageButton=(ImageButton)findViewById(R.id.imageButton);
-        imageButton.setOnLongClickListener(new View.OnLongClickListener() {
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-                //ok
-                return true;
+            public void onClick(View view) {
+                S.p.add(new Person("Du","Ks-1"));
+                doEnter();
+                changeColor = false;
             }
         });
 
