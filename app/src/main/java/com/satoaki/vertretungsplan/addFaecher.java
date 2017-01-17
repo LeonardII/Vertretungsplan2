@@ -1,77 +1,91 @@
 package com.satoaki.vertretungsplan;
 
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class addFaecher extends Fragment {
 
+    final String TAG = "main addFach";
     View v;
     ViewGroup mContainerView;
-    ImageButton addFach;
+    ViewGroup getMaddFachViewFake;
     AutoCompleteTextView inp_Fach;
     TextView imp_Id;
     Button cb_leistung;
+    ViewGroup maddFachView;
+    EditText fake1;
+    Button fake2;
+    boolean LeistungsKurs = false;
+    boolean toggle = true;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_add_faecher, container, false);
-        getActivity().setTitle("Fächer hinzufügen");
-        mContainerView = (ViewGroup)v.findViewById(R.id.addFach_container);
-        addFach = (ImageButton) v.findViewById(R.id.addFach_addBtn);
-        imp_Id = (TextView)v.findViewById(R.id.addFach_inp_num);
-        cb_leistung = (Button)v.findViewById(R.id.addFach_leistung);
-        if(Integer.parseInt(S.p.get(0).KlasseId)<66){
-            imp_Id.setVisibility(View.INVISIBLE);
-            cb_leistung.setVisibility(View.INVISIBLE);
+        setHasOptionsMenu(true);
+        getActivity().setTitle("Fächer verwalten");
+        fake1 = (EditText)v.findViewById(R.id.addFach_fake1);
+        fake2 = (Button)v.findViewById(R.id.addFach_fake2);
+        maddFachView = (ViewGroup) v.findViewById(R.id.addFriendContainer);
+        getMaddFachViewFake = (ViewGroup) v.findViewById(R.id.addFriendContainerFake);
+        mContainerView = (ViewGroup) v.findViewById(R.id.addFach_container);
+        imp_Id = (TextView) v.findViewById(R.id.addFach_inp_num);
+        cb_leistung = (Button) v.findViewById(R.id.addFach_leistung);
+        if (Integer.parseInt(S.p.get(0).KlasseId) < 66) {
+            imp_Id.setVisibility(View.GONE);
+            cb_leistung.setVisibility(View.GONE);
+            fake1.setVisibility(View.GONE);
+            fake2.setVisibility(View.GONE);
         }
-        cb_leistung.animate().translationXBy(600).setDuration(1);
-        imp_Id.animate().translationYBy(400).setDuration(1);
-        inp_Fach = (AutoCompleteTextView)v.findViewById(R.id.addFach_input);
-        inp_Fach.animate().translationXBy(-1000).setDuration(1);
-        addFach.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                toggle();
-            }
-        });
+        getMaddFachViewFake.setVisibility(View.GONE);
+        maddFachView.animate().translationYBy(-500).setDuration(1);
+        inp_Fach = (AutoCompleteTextView) v.findViewById(R.id.addFach_input);
         keyListener onkl = new keyListener();
         inp_Fach.setOnKeyListener(onkl);
         imp_Id.setOnKeyListener(onkl);
-        inp_Fach.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,S.VaidFaecherName));
+        inp_Fach.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, S.VaidFaecherName));
         cb_leistung.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 toggleLeistung();
             }
         });
         return v;
     }
+
+    boolean iconplus = true;
+    public void onPrepareOptionsMenu(Menu menu) {
+        final MenuItem btnAddFach = menu.findItem(R.id.actionBar_addFach);
+        btnAddFach.setVisible(true);
+
+        btnAddFach.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                toggle();
+                if(iconplus) {
+                    iconplus = false;
+                    btnAddFach.setIcon(R.drawable.ic_remove);
+                }else {
+                    iconplus = true;
+                    btnAddFach.setIcon(R.drawable.ic_add);
+                }
+                return false;
+            }
+        });
+    }
+
     private void checkFach(){
         boolean found = false;
         for(int b=0;b<S.VaidFaecherName.length;b++)
@@ -93,7 +107,7 @@ public class addFaecher extends Fragment {
             Log.i(TAG, "onKey: Invalid Fach");
         }
     }
-    boolean LeistungsKurs = false;
+
     private void toggleLeistung(){
         if(LeistungsKurs){
             LeistungsKurs = false;
@@ -103,29 +117,21 @@ public class addFaecher extends Fragment {
             cb_leistung.setText(" 4-Stündig");
         }
     }
-    boolean toggle = true;
+
     private void toggle() {
         if (toggle){
             toggle=false;
-            addFach.setFocusable(false);
-            cb_leistung.animate().translationXBy(-600).setDuration(800);
+            maddFachView.animate().translationY(0).setDuration(300);
             imp_Id.setFocusableInTouchMode(true);
-            imp_Id.animate().translationYBy(-400).setDuration(800);
             inp_Fach.setFocusableInTouchMode(true);
-            inp_Fach.animate().translationXBy(1000).setDuration(800);
-            addFach.setVisibility(View.GONE);
-            addFach.animate().translationYBy(-400).setDuration(1200);
+            getMaddFachViewFake.setVisibility(View.VISIBLE);
         }else{
             toggle=true;
-            addFach.animate().translationYBy(400).setDuration(1200);
-            addFach.setFocusableInTouchMode(true);
-            cb_leistung.animate().translationXBy(600).setDuration(800);
+            maddFachView.animate().translationYBy(-500).setDuration(400);
             imp_Id.setFocusableInTouchMode(false);
-            imp_Id.animate().translationYBy(400).setDuration(800);
             inp_Fach.setFocusableInTouchMode(false);
-            inp_Fach.animate().translationXBy(-1000).setDuration(800);
-            addFach.setVisibility(View.VISIBLE);
-
+            getMaddFachViewFake.setVisibility(View.GONE);
+            iconplus = false;
             imp_Id.setText("");
         }
     }
@@ -147,7 +153,6 @@ public class addFaecher extends Fragment {
         inp_Fach.setText("");
     }
 
-    final String TAG = "main addFach";
     class keyListener implements View.OnKeyListener {
         public boolean onKey(View view, int i, KeyEvent keyEvent) {
             if(KeyEvent.ACTION_DOWN==keyEvent.getAction()&&(i==KeyEvent.KEYCODE_NUMPAD_ENTER||i==KeyEvent.KEYCODE_ENTER))

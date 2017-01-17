@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <AutoCompleteTextView
+        android:id="@+id/addFach_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/addFach_inp_num"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_weight="0.06"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@drawable/ic_addfach"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="  Das Fach"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/addFach_inp_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/addFach_addBtn"
+        android:layout_weight="0.06"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@drawable/ic_addid"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="  Die Nummer"
+        android:inputType="number"
+        android:phoneNumber="true" />
+
+    <Button
+        android:id="@+id/addFach_leistung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/addFach_inp_num"
+        android:layout_alignBottom="@+id/addFach_inp_num"
+        android:layout_alignParentEnd="true"
+        android:layout_weight="0.0"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@drawable/ic_clock"
+        android:text=" 2-Stündig"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="?android:attr/textColorHint"
+        android:textSize="17sp" />
+
+</LinearLayout>

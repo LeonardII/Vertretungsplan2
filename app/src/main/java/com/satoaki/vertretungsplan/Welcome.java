@@ -3,31 +3,31 @@ package com.satoaki.vertretungsplan;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Welcome extends AppCompatActivity {
+    static boolean firsttime;
+    static boolean changeColor = true;
+    static TranslateAnimation mAnimation;
+    final String TAG = "main Welcome";
     private final Handler mHideHandler = new Handler();
+    AutoCompleteTextView Inp_Klasse;
+    ImageView slider;
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
@@ -60,14 +60,11 @@ public class Welcome extends AppCompatActivity {
         }
     };
 
-    AutoCompleteTextView Inp_Klasse;
-    ImageView slider;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         Inp_Klasse = (AutoCompleteTextView) findViewById(R.id.Welcome_inp_klasse);
-        Inp_Klasse.animate().alpha(0.0f).setDuration(1);
+        Inp_Klasse.setVisibility(View.INVISIBLE);
         Inp_Klasse.setFocusable(false);
         slider= (ImageView)findViewById(R.id.Welcome_slider);
         slider.animate().translationYBy(500);
@@ -83,7 +80,7 @@ public class Welcome extends AppCompatActivity {
             public void run() {
                 long t = System.currentTimeMillis();
                 firsttime = S.init();
-                while (t + 2000 > System.currentTimeMillis()) {};
+                while (t + 500 > System.currentTimeMillis()) {}
                 if(firsttime){
                     doLogin();
                 }else {doEnter();}
@@ -101,7 +98,7 @@ public class Welcome extends AppCompatActivity {
         TextView Credits = (TextView)findViewById(R.id.WelcomeCredits);
         Credits.animate().alpha(0.0f).setDuration(1000);
         Version.animate().alpha(0.0f).setDuration(1000);
-        slider.animate().translationYBy(-400).setDuration(1800);
+        slider.animate().translationYBy(-400).setDuration(500);
 
         mAnimation = new TranslateAnimation(
                 TranslateAnimation.ABSOLUTE, 0f,
@@ -112,7 +109,7 @@ public class Welcome extends AppCompatActivity {
         mAnimation.setRepeatCount(-1);
         mAnimation.setRepeatMode(Animation.REVERSE);
         slider.setAnimation(mAnimation);
-        
+
         mContentView.setOnTouchListener(new View.OnTouchListener() {
             boolean touched = false;
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -144,6 +141,7 @@ public class Welcome extends AppCompatActivity {
             }
         });
         Sloagen.animate().translationYBy(-310).setDuration(1000);
+        Inp_Klasse.setVisibility(View.VISIBLE);
         Inp_Klasse.setFocusable(true);
         Inp_Klasse.setFocusableInTouchMode(true);
         Inp_Klasse.animate().translationYBy(-320).setDuration(1000);
@@ -213,12 +211,9 @@ public class Welcome extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHidePart2Runnable);
         mHideHandler.postDelayed(mShowPart2Runnable,0);
     }
+
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
-    final String TAG = "main Welcome";
-    static boolean firsttime;
-    static boolean changeColor = true;
-    static TranslateAnimation mAnimation;
 }
