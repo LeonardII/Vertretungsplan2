@@ -141,7 +141,7 @@ public class Welcome extends AppCompatActivity {
 
     private void coninueLogin() {
         final ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
-        final TextView anweisung = (TextView)findViewById(R.id.WelcomeText);
+        //final TextView anweisung = (TextView)findViewById(R.id.WelcomeText);
         //anweisung.setVisibility(View.VISIBLE);
 
         final TextView Title = (TextView)findViewById(R.id.VertretungenTitle);
@@ -174,7 +174,7 @@ public class Welcome extends AppCompatActivity {
         Title2.setAlpha(0f);
         Title2.setVisibility(View.VISIBLE);
 
-        anweisung.animate().alpha(1f).setDuration(100).setStartDelay(1400);
+        //anweisung.animate().alpha(1f).setDuration(200).setStartDelay(1300);
         Title2.animate().translationX(0).alpha(1f).setDuration(600).setStartDelay(700);
 
     }
