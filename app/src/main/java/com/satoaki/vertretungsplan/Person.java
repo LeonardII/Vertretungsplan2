@@ -23,7 +23,8 @@ public class Person {
 
     }
     void addFach(String Fach){
-
+        //Faecher.add(Fach);
+        Log.i(TAG, "addFach: Sucessfully added: "+Fach);
     }
 
     static final String TAG = "main Person";

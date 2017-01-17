@@ -95,11 +95,11 @@ public class addFaecher extends Fragment {
                 if (kb != null) {
                 }
                 v.findViewById(R.id.addFach_empty).setVisibility(View.INVISIBLE);
+                S.p.get(0).addFach(codiereKlasse(b,S.ValidFaecherKuerzel[b].toString(),imp_Id.getText().toString()));
                 if(imp_Id.getText().length()>0)
                     inp_Fach.setText(inp_Fach.getText()+"-"+imp_Id.getText());
                 if(LeistungsKurs)
                     inp_Fach.setText("(LK) "+inp_Fach.getText());
-                S.p.get(0).addFach(codiereKlasse(b,inp_Fach.getText().toString(),imp_Id.getText().toString()));
                 toggle();
                 addItem();
             }
@@ -164,14 +164,18 @@ public class addFaecher extends Fragment {
     }
     private String codiereKlasse(int id,String Fach, String Id) {
         StringBuilder KlasseCodiert = new StringBuilder();
-        if (Integer.parseInt(S.p.get(0).KlasseId) < 66 || id < 4)
+        if (Integer.parseInt(S.p.get(0).KlasseId) < 66)
             KlasseCodiert.append(S.ValidFaecherKuerzel[id]);
         else {
-            if (LeistungsKurs)
-                KlasseCodiert.append(Fach.toString().toUpperCase());
-            else
-                KlasseCodiert.append(Fach.toString().toLowerCase());
-            KlasseCodiert.append("-"+imp_Id.getText().toString());
+            if(id < 4){
+                KlasseCodiert.append(Fach);
+            }else {
+                if (LeistungsKurs)
+                    KlasseCodiert.append(Fach.toUpperCase());
+                else
+                    KlasseCodiert.append(Fach.toLowerCase());
+            }
+            KlasseCodiert.append("-"+Id);
         }
         return KlasseCodiert.toString();
     }
