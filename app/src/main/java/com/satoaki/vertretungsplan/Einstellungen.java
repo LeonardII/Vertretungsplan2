@@ -14,17 +14,14 @@ import android.view.ViewGroup;
 public class Einstellungen extends Fragment {
 
 
-    public Einstellungen() {
-        // Required empty public constructor
-    }
-
-
+    View v;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        v = inflater.inflate(R.layout.fragment_einstellungen, container, false);
         getActivity().setTitle("Einstellungen");
-        return inflater.inflate(R.layout.fragment_einstellungen, container, false);
+        return v;
     }
 
 }
