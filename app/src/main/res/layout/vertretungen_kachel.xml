@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:text="Deutsch"
+        android:layout_height="wrap_content"
+        android:id="@+id/verkach_Fach"
+        android:textSize="24sp"
+        android:textColor="@color/colorAccent"
+        android:paddingTop="4dp"
+        android:paddingStart="9dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:paddingRight="9dp" />
+
+    <TextView
+        android:text="Entfall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/verkach_Lehrer"
+        android:layout_toEndOf="@+id/verkach_Fach"
+        android:id="@+id/verkach_Art"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="Raum 310"
+        android:layout_height="wrap_content"
+        android:id="@+id/verkach_Raum"
+        android:paddingStart="9dp"
+        android:layout_width="100dp"
+        android:layout_below="@+id/verkach_Fach"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="bei Sbt"
+        android:layout_height="wrap_content"
+        android:id="@+id/verkach_Lehrer"
+        android:layout_width="120dp"
+        android:layout_below="@+id/verkach_Fach"
+        android:layout_toEndOf="@+id/verkach_Fach" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_more"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/verkach_expand"
+        android:background="@color/invisible"
+        android:layout_alignBottom="@+id/verkach_Lehrer"
+        style="@style/AppTheme.PopupOverlay"
+        android:tint="@color/colorAccent"
+        android:paddingRight="10dp" />
+
+</RelativeLayout>

@@ -13,43 +13,46 @@ public class Vertretungen extends Fragment {
 
     View v;
     TextView tv;
+    ViewGroup Event_container;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_vertretungen, container, false);
-        tv = (TextView)v.findViewById(R.id.Hud_Text);
+        Event_container = (ViewGroup) v.findViewById(R.id.Vertretungen_EventContainer);
         getActivity().setTitle("Vertretungen");
         S.p.get(0).UpdateEvents();
-        tv.post(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 StringBuilder sb = new StringBuilder();
                 while (!S.p.get(0).u2date) {
                 }
-                if (!S.hasInternet)
-                    sb.append("Kein Internet verfuegbar");
-                else {
+                if (!S.hasInternet) {
+                    Event e = new Event();
+                    e.setFach("Kein Internet vorhanden!");
+                    addItem(e);
+                }else {
                     for (Event e : S.p.get(0).event) {
-                        sb.append(e.mergeEvent());
-                        sb.append("\n");
+                        addItem(e);
                     }
-                    Log.i("final", sb.toString());
                 }
-                tv.setText(sb.toString());
             }
-        });
+        }).start();
         return v;
     }
 
-}
-class Loading implements Runnable{
-    TextView tv;
+    private void addItem(Event e) {
+        final ViewGroup newView = (ViewGroup) LayoutInflater.from(getContext()).inflate(R.layout.vertretungen_kachel, Event_container, false);
+        ((TextView) newView.findViewById(R.id.verkach_Fach)).setText(e.Fach);
+        ((TextView) newView.findViewById(R.id.verkach_Art)).setText(e.Art);
+        ((TextView) newView.findViewById(R.id.verkach_Lehrer)).setText(e.Vertreter);
+        ((TextView) newView.findViewById(R.id.verkach_Raum)).setText(e.Raum);
 
-    public Loading(TextView tv){
-        this.tv = tv;
-    }
-
-    @Override
-    public void run() {
-
+        newView.findViewById(R.id.verkach_expand).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("main Vertretungen", "expand...");
+            }
+        });
+        Event_container.addView(newView, 0);
     }
 }
