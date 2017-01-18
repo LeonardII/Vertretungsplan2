@@ -1,17 +1,16 @@
 package com.satoaki.vertretungsplan;
 
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Html;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -32,11 +31,11 @@ public class Vertretungen extends Fragment {
         new Thread() {
             @Override
             public void run() {
-                while (!S.p.get(0).u2date) {
-                }
+                while (!S.p.get(0).u2date) {}
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        ((TextView)v.findViewById(R.id.Vertretungen_lade)).setVisibility(View.GONE);
                         if (!S.hasInternet) {
                             Event e = new Event();
                             e.setFachAusgeschrieben("Kein Internet vorhanden!");
@@ -103,4 +102,18 @@ public class Vertretungen extends Fragment {
         Event_container.addView(newView, 0);
 
     }
+    public void onPrepareOptionsMenu(Menu menu) {
+        final MenuItem btnRefresh = menu.findItem(R.id.actionBar_addFach);
+        btnRefresh.setVisible(true);
+        btnRefresh.setIcon(R.drawable.ic_refresh);
+        btnRefresh.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.content_main,new Vertretungen()).commit();
+             return false;
+            }
+        });
+    }
+
 }

@@ -67,7 +67,6 @@ public class addFaecher extends Fragment {
     }
 
     boolean iconplus = true;
-    //TODO: Enter on Klick
     public void onPrepareOptionsMenu(Menu menu) {
         final MenuItem btnAddFach = menu.findItem(R.id.actionBar_addFach);
         btnAddFach.setVisible(true);
@@ -80,6 +79,7 @@ public class addFaecher extends Fragment {
                     iconplus = false;
                     btnAddFach.setIcon(R.drawable.ic_haken);
                 }else {
+                    checkFach();
                     iconplus = true;
                     btnAddFach.setIcon(R.drawable.ic_add);
                 }
@@ -154,10 +154,12 @@ public class addFaecher extends Fragment {
         mContainerView.addView(newView, 0);
         inp_Fach.setText("");
         imp_Id.setText("");
+
     }
 
     class keyListener implements View.OnKeyListener {
         public boolean onKey(View view, int i, KeyEvent keyEvent) {
+            inp_Fach.showDropDown();
             if(KeyEvent.ACTION_DOWN==keyEvent.getAction()&&(i==KeyEvent.KEYCODE_NUMPAD_ENTER||i==KeyEvent.KEYCODE_ENTER))
                 checkFach();
             return false;

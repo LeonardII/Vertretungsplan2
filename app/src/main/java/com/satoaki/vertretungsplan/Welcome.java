@@ -142,6 +142,7 @@ public class Welcome extends AppCompatActivity {
     }
 
     private void coninueLogin() {
+        numberPicker.setFocusableInTouchMode(true);
         final ImageView logo = (ImageView)findViewById(R.id.WelcomeLogo);
         final TextView Title = (TextView)findViewById(R.id.VertretungenTitle);
         final TextView Title2 = (TextView)findViewById(R.id.WelcomeTitle);

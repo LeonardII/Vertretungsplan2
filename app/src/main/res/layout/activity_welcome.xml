@@ -101,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/welcome_numberPicker"
+                android:focusable="false"
                 android:layout_below="@+id/WelcomeSloagen"
                 android:layout_alignStart="@+id/WelcomeLogo"
                 android:layout_alignEnd="@+id/WelcomeLogo" />
