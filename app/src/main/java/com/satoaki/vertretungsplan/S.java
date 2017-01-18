@@ -35,12 +35,10 @@ import java.util.Calendar;
 public class S {
 
     static ArrayList<Person> p;
-    static ArrayList<String> vertretungen;
     static boolean hasInternet = false;
 
     static boolean init(){
         p = new ArrayList<>();
-        vertretungen = new ArrayList<>();
         File Ordner =  new File(Environment.getExternalStorageDirectory(),"Vertretungsplan");
         setValidKlassen();
         Log.i(TAG, "Initializing Done");
@@ -110,7 +108,6 @@ public class S {
             "M","Eth","inf","Ph","Ch","Bio","NP","NwT","Bk","Gk","G","Ek","Medien","SPO","SW","SM","KL",
             "lit","ast","wir","dg","psy","sem","KimKo","Mu"};
     static String[] ValidKlassen = new String[68];
-    static String[] ValidArten  = { "Vertretung", "Raum", "Vtr. ohne Lehrer", "Entfall" };
     static File Ordner;
     static final int unbearbeitetLassen = 3;
     static final String TAG = "main Static";

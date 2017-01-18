@@ -7,7 +7,7 @@ import android.util.Log;
  */
 
 public class Event {
-    String Stunden = "", Vertreter = "", Raum = "", Fach = "", Art = "", Tag = "";
+    String Stunden = "", Vertreter = "", Raum = "", Fach = "", Art = "", Tag = "",FachAusgeschrieben="",VertVon="",VertText="";
 
     public void setArt(String art) {
         Art = art;
@@ -16,6 +16,11 @@ public class Event {
 
     public void setFach(String fach) {
         Fach = fach;
+        String[] kz = Fach.split("-");
+        for(int i = 0;i<S.ValidFaecherKuerzel.length;i++){
+            if(S.ValidFaecherKuerzel[i].toLowerCase().equals(kz[0].toLowerCase()))
+                FachAusgeschrieben = S.VaidFaecherName[i];
+        }
         Log.i(TAG, "setFach: "+fach);
     }
 
@@ -38,11 +43,18 @@ public class Event {
         Tag = tag;
         Log.i(TAG, "setTag: "+tag);
     }
-    final String TAG = "main Event ";
 
-    public String mergeEvent(){
-        if(Tag!="")
-            return Tag;
-        return Stunden+" "+Fach+" bei "+Vertreter+" "+Art+" in "+Raum;
+    public void setVertVon(String vertVon) {
+        VertVon = vertVon;
     }
+
+    public void setVertText(String vertText) {
+        VertText = vertText;
+    }
+
+    public void setFachAusgeschrieben(String fachAusgeschrieben) {
+        FachAusgeschrieben = fachAusgeschrieben;
+    }
+
+    final String TAG = "main Event ";
 }

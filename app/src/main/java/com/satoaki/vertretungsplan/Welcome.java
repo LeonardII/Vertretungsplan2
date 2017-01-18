@@ -79,7 +79,7 @@ public class Welcome extends AppCompatActivity {
 
 
         slider= (ImageView)findViewById(R.id.Welcome_slider);
-        slider.animate().translationYBy(500);
+        slider.animate().translationYBy(500).setDuration(1);
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
@@ -110,7 +110,6 @@ public class Welcome extends AppCompatActivity {
         TextView Credits = (TextView)findViewById(R.id.WelcomeCredits);
         Credits.animate().alpha(0.0f).setDuration(1000);
         Version.animate().alpha(0.0f).setDuration(1000);
-        slider.animate().translationYBy(-400).setDuration(500);
         mAnimation = new TranslateAnimation(
                 TranslateAnimation.ABSOLUTE, 0f,
                 TranslateAnimation.ABSOLUTE, 0f,
@@ -119,6 +118,7 @@ public class Welcome extends AppCompatActivity {
         mAnimation.setDuration(700);
         mAnimation.setRepeatCount(-1);
         mAnimation.setRepeatMode(Animation.REVERSE);
+        slider.animate().translationYBy(-400).setDuration(500);
         slider.setAnimation(mAnimation);
         continueButton =(ImageButton)findViewById(R.id.imageButton);
         continueButton.animate().translationYBy(700).setDuration(1).setListener(new AnimatorListenerAdapter() {

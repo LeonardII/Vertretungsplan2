@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:weightSum="1">
 
     <TextView
@@ -19,6 +20,22 @@
         android:paddingRight="9dp" />
 
     <TextView
+        android:text="Deutsch"
+        android:layout_height="wrap_content"
+        android:id="@+id/verkach_Tag"
+        android:textSize="24sp"
+        android:textColor="@color/colorAccent"
+        android:paddingTop="4dp"
+        android:paddingStart="9dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:paddingRight="9dp"
+        android:textStyle="normal|bold"
+        android:lineSpacingExtra="8sp"
+        android:fontFamily="sans-serif" />
+
+    <TextView
         android:text="Entfall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +50,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/verkach_Raum"
         android:paddingStart="9dp"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_below="@+id/verkach_Fach"
         android:layout_alignParentStart="true" />
 
@@ -41,7 +58,7 @@
         android:text="bei Sbt"
         android:layout_height="wrap_content"
         android:id="@+id/verkach_Lehrer"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
         android:layout_below="@+id/verkach_Fach"
         android:layout_toEndOf="@+id/verkach_Fach" />
 
@@ -57,5 +74,30 @@
         style="@style/AppTheme.PopupOverlay"
         android:tint="@color/colorAccent"
         android:paddingRight="10dp" />
+
+    <TextView
+        android:text="D-11 in der 3-4. Stunde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/verkach_Raum"
+        android:layout_alignParentStart="true"
+        android:id="@+id/verkach_moreInfo"
+        android:layout_alignParentEnd="true"
+        android:textSize="16sp"
+        android:paddingLeft="9dp"
+        android:paddingTop="5dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:text="Findet statt!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/verkach_moreInfo"
+        android:layout_alignParentStart="true"
+        android:id="@+id/verkach_Text"
+        android:paddingLeft="9dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:visibility="gone" />
 
 </RelativeLayout>
