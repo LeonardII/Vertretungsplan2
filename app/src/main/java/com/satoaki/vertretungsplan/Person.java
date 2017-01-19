@@ -32,7 +32,9 @@ public class Person {
     }
 
     void setFaecher(String faecher) {
-
+        String[]fach = faecher.split("<!>");
+        for (int i=0;i<fach.length;i++)
+            addFach(fach[i]);
     }
 
     void addFach(String Fach) {

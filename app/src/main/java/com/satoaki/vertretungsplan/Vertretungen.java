@@ -23,6 +23,7 @@ public class Vertretungen extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_vertretungen, container, false);
+        setHasOptionsMenu(true);
         Event_container = (ViewGroup) v.findViewById(R.id.Vertretungen_EventContainer);
         getActivity().setTitle("Vertretungen");
 

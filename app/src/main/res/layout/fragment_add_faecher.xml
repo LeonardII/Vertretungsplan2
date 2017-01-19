@@ -56,7 +56,7 @@
             android:hint="  Die Nummer"
             android:inputType="number"
             android:phoneNumber="true"
-            android:visibility="invisible" />
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/addFach_fake2"
@@ -72,7 +72,7 @@
             android:textAllCaps="false"
             android:textColor="?android:attr/textColorHint"
             android:textSize="17sp"
-            android:visibility="invisible" />
+            android:visibility="gone" />
     </LinearLayout>
 
     <TextView android:id="@+id/addFach_empty"
@@ -106,7 +106,7 @@
             android:drawableLeft="@drawable/ic_addfach"
             android:ems="10"
             android:focusable="false"
-            android:hint="  Das Fach"
+            android:hint="  Das Fach (Klicken für Liste)"
             android:inputType="textPersonName"
             android:textColor="@color/white"
             android:textColorHighlight="@color/white"
@@ -129,7 +129,8 @@
             android:phoneNumber="true"
             android:textColor="@color/white"
             android:textColorHighlight="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColorHint="@color/white"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/addFach_leistung"
@@ -146,7 +147,8 @@
             android:textColor="@color/white"
             android:textColorHighlight="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:visibility="gone" />
     </LinearLayout>
 
 

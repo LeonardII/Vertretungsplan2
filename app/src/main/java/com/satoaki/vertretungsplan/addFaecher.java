@@ -44,15 +44,21 @@ public class addFaecher extends Fragment {
         mContainerView = (ViewGroup) v.findViewById(R.id.addFach_container);
         imp_Id = (TextView) v.findViewById(R.id.addFach_inp_num);
         cb_leistung = (Button) v.findViewById(R.id.addFach_leistung);
-        if (Integer.parseInt(S.p.get(0).KlasseId) < 66) {
-            imp_Id.setVisibility(View.GONE);
-            cb_leistung.setVisibility(View.GONE);
-            fake1.setVisibility(View.GONE);
-            fake2.setVisibility(View.GONE);
+        if (Integer.parseInt(S.p.get(0).KlasseId) >= 66) {
+            imp_Id.setVisibility(View.VISIBLE);
+            cb_leistung.setVisibility(View.VISIBLE);
+            fake1.setVisibility(View.VISIBLE);
+            fake2.setVisibility(View.VISIBLE);
         }
         getMaddFachViewFake.setVisibility(View.GONE);
         maddFachView.animate().translationYBy(-500).setDuration(1);
         inp_Fach = (AutoCompleteTextView) v.findViewById(R.id.addFach_input);
+        inp_Fach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inp_Fach.showDropDown();
+            }
+        });
         keyListener onkl = new keyListener();
         inp_Fach.setOnKeyListener(onkl);
         imp_Id.setOnKeyListener(onkl);
@@ -63,6 +69,24 @@ public class addFaecher extends Fragment {
             }
         });
         maddFachView.setVisibility(View.VISIBLE);
+        if(S.p.get(0).Faecher.size()>0){
+            for(int counter = 0;counter<S.p.get(0).Faecher.size();counter++) {
+                String[] Item = S.p.get(0).Faecher.get(counter).split("-");
+                String Fach="Feher aufgetreten";
+                String Id=Item[1].toString();
+                Log.i(TAG, "onCreateView: "+Item[0]);
+                Log.i(TAG, "onCreateView: "+Item[1]);
+                boolean lk = false;
+                for(int i=0;i<S.ValidFaecherKuerzel.length;i++){
+                    if(S.ValidFaecherKuerzel[i].equals(Item[0])) {
+                        Fach = S.VaidFaecherName[i];
+                        if (S.ValidFaecherKuerzel[i].toUpperCase().equals(Item[0]))
+                            lk = true;
+                    }
+                }
+                addItem(Fach,Id,lk);
+            }
+        }
         return v;
     }
 
@@ -98,11 +122,7 @@ public class addFaecher extends Fragment {
                 }
                 v.findViewById(R.id.addFach_empty).setVisibility(View.INVISIBLE);
                 S.p.get(0).addFach(codiereKlasse(b,S.ValidFaecherKuerzel[b].toString(),imp_Id.getText().toString()));
-                if(imp_Id.getText().length()>0)
-                    inp_Fach.setText(inp_Fach.getText()+"-"+imp_Id.getText());
-                if(LeistungsKurs)
-                    inp_Fach.setText("(LK) "+inp_Fach.getText());
-                addItem();
+                addItem(inp_Fach.getText().toString(),imp_Id.getText().toString(),LeistungsKurs);
             }
         if (!found){
             Toast.makeText(getContext(),"das Fach existiert nicht!",Toast.LENGTH_SHORT).show();
@@ -138,9 +158,16 @@ public class addFaecher extends Fragment {
         }
     }
 
-    private void addItem() {
+    private void addItem(String Fach,String Id,boolean lk) {
+        v.findViewById(R.id.addFach_empty).setVisibility(View.GONE);
+        String Item = Fach;
+        if(Id.length()>0) {
+            Item = (Fach + "-" + Id);
+            if (lk)
+                Item = ("(LK) " + Item);
+        }
         final ViewGroup newView = (ViewGroup) LayoutInflater.from(getContext()).inflate(R.layout.addfaecher_kachel, mContainerView, false);
-        ((TextView) newView.findViewById(R.id.addFach_listFach)).setText(inp_Fach.getText());
+        ((TextView) newView.findViewById(R.id.addFach_listFach)).setText(Item);
 
         newView.findViewById(R.id.addFach_btnDelete).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,7 +186,6 @@ public class addFaecher extends Fragment {
 
     class keyListener implements View.OnKeyListener {
         public boolean onKey(View view, int i, KeyEvent keyEvent) {
-            inp_Fach.showDropDown();
             if(KeyEvent.ACTION_DOWN==keyEvent.getAction()&&(i==KeyEvent.KEYCODE_NUMPAD_ENTER||i==KeyEvent.KEYCODE_ENTER))
                 checkFach();
             return false;

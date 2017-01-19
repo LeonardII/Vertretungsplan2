@@ -84,6 +84,8 @@ public class Welcome extends AppCompatActivity {
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
         ActionBar actionBar = getSupportActionBar();
+        final Context context= getApplicationContext();
+
         if (actionBar != null) {
             actionBar.hide();
         }
@@ -91,7 +93,7 @@ public class Welcome extends AppCompatActivity {
             @Override
             public void run() {
                 long t = System.currentTimeMillis();
-                firsttime = S.init();
+                firsttime = S.init(context);
                 while (t + 500 > System.currentTimeMillis()) {};
                 if(firsttime){
                     doLogin();
