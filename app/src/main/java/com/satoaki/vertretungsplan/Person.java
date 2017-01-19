@@ -45,16 +45,16 @@ public class Person {
     void UpdateEvents() {
         event.clear();
         if (Faecher.size() > 0)
-            new Thread(new com.satoaki.vertretungsplan.BackGroundProcess(createUrl(), this)).start();
+            new Thread(new com.satoaki.vertretungsplan.BackGroundProcess(createUrl(0),createUrl(1), this)).start();
     }
 
-    private String createUrl() {
-        return "http://www.fsg-marbach.de/fileadmin/bilder/unterricht/vertretungsplanung/Klassen/" + getKalenderWoche() + "/w/w000" + S.getKlassenId(Klasse) + ".htm";
+    private String createUrl(int woche) {
+        return "http://www.fsg-marbach.de/fileadmin/bilder/unterricht/vertretungsplanung/Klassen/" + getKalenderWoche(woche) + "/w/w000" + S.getKlassenId(Klasse) + ".htm";
     }
 
-    private String getKalenderWoche() {
+    private String getKalenderWoche(int woche) {
         Calendar cal = Calendar.getInstance();
-        int ICalW = cal.get(Calendar.WEEK_OF_YEAR);
+        int ICalW = cal.get(Calendar.WEEK_OF_YEAR)+woche;
         String SCalW = String.valueOf(ICalW);
         if (ICalW < 10)
             SCalW = "0" + SCalW;
@@ -66,12 +66,14 @@ public class Person {
 
 class BackGroundProcess implements Runnable {
     String url;
+    String url2;
     Person person;
 
-    public BackGroundProcess(String url, Person p) {
+    public BackGroundProcess(String url,String url2, Person p) {
         super();
         person = p;
         this.url = url;
+        this.url2 = url2;
     }
 
     public void run() {
@@ -79,6 +81,21 @@ class BackGroundProcess implements Runnable {
         try {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitAll().build());
             scanner = new Scanner(new URL(url).openStream());
+            while (scanner.hasNextLine()) {
+                String actLine = scanner.nextLine();
+                Log.i("XXX", "Quellcode: " + actLine);
+                for (String p : person.Faecher)
+                    if (actLine.contains(p)) {
+                        Event e = getEvent(actLine);
+                        if (!e.Stunden.equals("Failed!"))
+                            person.event.add(e);
+                    }
+                if (actLine.contains("Montag"))
+                    person.event.add(getEventTag(actLine));
+            }
+            scanner.close();
+            S.hasInternet = true;
+            Log.i(TAG, "run: hasfinished");scanner = new Scanner(new URL(url2).openStream());
             while (scanner.hasNextLine()) {
                 String actLine = scanner.nextLine();
                 Log.i("XXX", "Quellcode: " + actLine);

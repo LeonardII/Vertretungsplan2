@@ -1,6 +1,7 @@
 package com.satoaki.vertretungsplan;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -51,7 +52,7 @@ public class addFaecher extends Fragment {
             fake2.setVisibility(View.VISIBLE);
         }
         getMaddFachViewFake.setVisibility(View.GONE);
-        maddFachView.animate().translationYBy(-500).setDuration(1);
+        maddFachView.animate().translationYBy(-700).setDuration(1);
         inp_Fach = (AutoCompleteTextView) v.findViewById(R.id.addFach_input);
         inp_Fach.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,12 +74,12 @@ public class addFaecher extends Fragment {
             for(int counter = 0;counter<S.p.get(0).Faecher.size();counter++) {
                 String[] Item = S.p.get(0).Faecher.get(counter).split("-");
                 String Fach="Feher aufgetreten";
-                String Id=Item[1].toString();
-                Log.i(TAG, "onCreateView: "+Item[0]);
-                Log.i(TAG, "onCreateView: "+Item[1]);
+                String Id = "";
+                if(Integer.parseInt(S.p.get(0).KlasseId)>=66)
+                    Id = Item[1].toString();
                 boolean lk = false;
                 for(int i=0;i<S.ValidFaecherKuerzel.length;i++){
-                    if(S.ValidFaecherKuerzel[i].equals(Item[0])) {
+                    if(S.ValidFaecherKuerzel[i].toLowerCase().equals(Item[0].toLowerCase())) {
                         Fach = S.VaidFaecherName[i];
                         if (S.ValidFaecherKuerzel[i].toUpperCase().equals(Item[0]))
                             lk = true;
@@ -150,7 +151,7 @@ public class addFaecher extends Fragment {
             getMaddFachViewFake.setVisibility(View.VISIBLE);
         }else{
             toggle=true;
-            maddFachView.animate().translationYBy(-500).setDuration(400);
+            maddFachView.animate().translationYBy(-700).setDuration(400);
             imp_Id.setFocusableInTouchMode(false);
             inp_Fach.setFocusableInTouchMode(false);
             getMaddFachViewFake.setVisibility(View.GONE);

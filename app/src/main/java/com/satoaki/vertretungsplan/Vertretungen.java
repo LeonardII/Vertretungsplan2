@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class Vertretungen extends Fragment {
@@ -36,7 +37,9 @@ public class Vertretungen extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        ((ProgressBar)v.findViewById(R.id.Vertretungen_progressbar)).setVisibility(View.GONE);
                         ((TextView)v.findViewById(R.id.Vertretungen_lade)).setVisibility(View.GONE);
+                        long t = System.currentTimeMillis();
                         if (!S.hasInternet) {
                             Event e = new Event();
                             e.setFachAusgeschrieben("Kein Internet vorhanden!");
@@ -92,13 +95,15 @@ public class Vertretungen extends Fragment {
                 addItem(b);
             }
             keineVertretung = true;
-            String htmlString="<u>"+e.Tag+"</u>";
+            String htmlString=e.Tag;
             Tag.setText(Html.fromHtml(htmlString));
             Lehrer.setVisibility(View.GONE);
             Raum.setVisibility(View.GONE);
             btnExpand.setVisibility(View.GONE);
-        }else
+        }else {
             keineVertretung = false;
+            Tag.setVisibility(View.INVISIBLE);
+        }
 
         Event_container.addView(newView, 0);
 

@@ -73,7 +73,7 @@ public class S {
             p.clear();
         }
         try{
-            BufferedReader bf = new BufferedReader(new FileReader(new File(Ordner, "assets.txt")));
+            BufferedReader bf = new BufferedReader(new FileReader(assets));
             EinstellWerte = bf.readLine();
             p.add(new Person(bf.readLine(), bf.readLine()));
             p.get(0).setFaecher(bf.readLine());

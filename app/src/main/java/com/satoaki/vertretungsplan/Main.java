@@ -1,5 +1,4 @@
 package com.satoaki.vertretungsplan;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -24,7 +23,10 @@ public class Main extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fm = getSupportFragmentManager();
+        if(Welcome.firsttime)
         fm.beginTransaction().replace(R.id.content_main,new addFaecher()).commit();
+        else
+            fm.beginTransaction().replace(R.id.content_main,new Vertretungen()).commit();
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

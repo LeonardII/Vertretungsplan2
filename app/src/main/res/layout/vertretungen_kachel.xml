@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
@@ -10,7 +11,7 @@
         android:text="Deutsch"
         android:layout_height="wrap_content"
         android:id="@+id/verkach_Fach"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textColor="@color/colorAccent"
         android:paddingTop="4dp"
         android:paddingStart="9dp"
@@ -23,17 +24,19 @@
         android:text="Deutsch"
         android:layout_height="wrap_content"
         android:id="@+id/verkach_Tag"
-        android:textSize="24sp"
-        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:paddingTop="4dp"
         android:paddingStart="9dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_width="wrap_content"
         android:paddingRight="9dp"
-        android:textStyle="normal|bold"
         android:lineSpacingExtra="8sp"
-        android:fontFamily="sans-serif" />
+        android:fontFamily="sans-serif"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="4dp" />
 
     <TextView
         android:text="Entfall"
@@ -43,7 +46,7 @@
         android:layout_toEndOf="@+id/verkach_Fach"
         android:id="@+id/verkach_Art"
         android:textAlignment="center"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
     <TextView
         android:text="Raum 310"
@@ -86,7 +89,8 @@
         android:textSize="16sp"
         android:paddingLeft="9dp"
         android:paddingTop="5dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:paddingBottom="4dp" />
 
     <TextView
         android:text="Findet statt!"

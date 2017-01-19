@@ -76,8 +76,6 @@ public class Welcome extends AppCompatActivity {
         numberPicker.setMaxValue(S.ValidKlassen.length-1
         );
 
-
-
         slider= (ImageView)findViewById(R.id.Welcome_slider);
         slider.animate().translationYBy(500).setDuration(1);
         mVisible = true;
