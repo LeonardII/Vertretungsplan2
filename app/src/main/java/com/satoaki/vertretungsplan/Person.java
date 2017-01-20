@@ -43,7 +43,6 @@ public class Person {
     }
 
     void UpdateEvents() {
-        event.clear();
         if (Faecher.size() > 0)
             new Thread(new com.satoaki.vertretungsplan.BackGroundProcess(createUrl(0),createUrl(1), this)).start();
     }
@@ -77,7 +76,6 @@ class BackGroundProcess implements Runnable {
     }
 
     public void run() {
-        Scanner scanner;
         try {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitAll().build());
             Algorythm(new Scanner(new URL(url).openStream()));

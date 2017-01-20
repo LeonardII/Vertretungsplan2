@@ -79,15 +79,10 @@ public class S {
             EinstellWerte = bf.readLine();
             p.add(new Person(bf.readLine(), bf.readLine()));
             p.get(0).setFaecher(bf.readLine());
-            String allEvents = bf.readLine();
-            Log.i(TAG, "Update: "+allEvents);
-            String[] getEvent = allEvents.split("<?>");
-            for(int i=0;i<getEvent.length;i++)
-                p.get(0).event.add(new Event(getEvent[i],0));
             Log.i(TAG, "Update Complete");
         }catch (Exception e){
-            //Toast.makeText(context,"Dateinen Korrupt!",Toast.LENGTH_LONG).show();
-            //Log.i(TAG, "ERROR: Something went wrong reading File");
+            Toast.makeText(context,"Dateinen Korrupt!",Toast.LENGTH_LONG).show();
+            Log.i(TAG, "ERROR: Something went wrong reading File");
             e.printStackTrace();
             System.exit(0);
         }
@@ -106,9 +101,6 @@ public class S {
                 os.write(f.getBytes());
                 os.write("<!>".getBytes());
             }
-            os.write("\n".getBytes());
-            for (Event f:S.p.get(0).event)
-                os.write((f.MergeEvent()+"<?>").getBytes());
             os.close();
             Log.i(TAG, "Speichern Done");
         } catch (Exception e) {

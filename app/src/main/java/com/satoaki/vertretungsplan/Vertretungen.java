@@ -48,9 +48,10 @@ public class Vertretungen extends Fragment {
                     public void run() {
                         long t = System.currentTimeMillis();
                         if (!S.hasInternet) {
+                            S.p.get(0).event.clear();
                             Event e = new Event();
-                            e.setFachAusgeschrieben("Kein Internet vorhanden!");
-                            e.setVertText("Error:(#012322), B[d INt4rn3t,hack3d, 0987tyweuify8qhi3hef8329yrhifea;qknascqbjfealdn;'r4ojt;-gpo[pg5kjre");
+                            e.setTag("Kein Internet vorhanden!");
+                            e.setNDT("Error:(#012322), B[d INt4rn3t,hack3d, 0987tyweuify8qhi3hef8329yrhifea;qknascqbjfealdn;'r4ojt;-gpo[pg5kjre");
                             addItem(e);
                         } else {
                             new Thread() {
