@@ -80,43 +80,45 @@ class BackGroundProcess implements Runnable {
         Scanner scanner;
         try {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitAll().build());
-            scanner = new Scanner(new URL(url).openStream());
-            while (scanner.hasNextLine()) {
-                String actLine = scanner.nextLine();
-                Log.i("XXX", "Quellcode: " + actLine);
-                for (String p : person.Faecher)
-                    if (actLine.contains(p)) {
-                        Event e = getEvent(actLine);
-                        if (!e.Stunden.equals("Failed!"))
-                            person.event.add(e);
-                    }
-                if (actLine.contains("Montag"))
-                    person.event.add(getEventTag(actLine));
-            }
-            scanner.close();
+            Algorythm(new Scanner(new URL(url).openStream()));
+            Algorythm(new Scanner(new URL(url2).openStream()));
             S.hasInternet = true;
-            Log.i(TAG, "run: hasfinished");scanner = new Scanner(new URL(url2).openStream());
-            while (scanner.hasNextLine()) {
-                String actLine = scanner.nextLine();
-                Log.i("XXX", "Quellcode: " + actLine);
-                for (String p : person.Faecher)
-                    if (actLine.contains(p)) {
-                        Event e = getEvent(actLine);
-                        if (!e.Stunden.equals("Failed!"))
-                            person.event.add(e);
-                    }
-                if (actLine.contains("Montag"))
-                    person.event.add(getEventTag(actLine));
-            }
-            scanner.close();
-            S.hasInternet = true;
-            Log.i(TAG, "run: hasfinished");
         } catch (Exception e) {
             Log.i(TAG, "getQuellcode: Error: Kein Internet:");
             e.printStackTrace();
             S.hasInternet = false;
         }
         person.u2date = true;
+    }
+    private void Algorythm(Scanner scanner){
+        while (scanner.hasNextLine()) {
+            String actLine = scanner.nextLine();
+            Log.i("XXX", "Quellcode: " + actLine);
+            for (String p : person.Faecher)
+                if (actLine.contains(p)) {
+                    Event e = getEvent(actLine);
+                    if (!e.Stunden.equals("Failed!"))
+                        person.event.add(e);
+                }
+            if(actLine.contains("<tr><td colspan="))
+                addNDT(actLine);
+            if(actLine.contains("Vertretungen sind nicht freigegeben"))
+                person.event.remove(person.event.size()-1);
+            if (actLine.contains("Montag"))
+                 person.event.add(getEventTag(actLine));
+        }
+        scanner.close();
+        Log.i(TAG, "run: hasfinished");
+    }
+
+    private void addNDT(String actLine) {
+        int c = 20;
+        StringBuilder sb = new StringBuilder();
+        while(actLine.charAt(c)!='<') {
+            sb.append(actLine.charAt(c));
+            c++;
+        }
+        person.event.get(person.event.size()-1).setNDT(sb.toString());
     }
 
     private Event getEvent(String actLine) {

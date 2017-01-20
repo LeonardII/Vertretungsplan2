@@ -7,7 +7,26 @@ import android.util.Log;
  */
 
 public class Event {
-    String Stunden = "", Vertreter = "", Raum = "", Fach = "", Art = "", Tag = "",FachAusgeschrieben="",VertVon="",VertText="";
+    String Stunden = "", Vertreter = "", Raum = "", Fach = "", Art = "", Tag = "",FachAusgeschrieben="",VertVon="",VertText="",NDT="";
+
+    public Event(){}
+    public Event(String art){Art = art;}
+    public Event(String Event, int g){
+     String[] All = Event.split("<!>");
+        Stunden = All[0];
+        Vertreter = All[1];
+        Raum = All[2];
+        Fach = All[3];
+        Art = All[4];
+        Tag = All[5];
+        FachAusgeschrieben = All[6];
+        VertVon = All[7];
+        VertText = All[8];
+    }
+
+    public String MergeEvent(){
+        return Stunden+"<!> "+Vertreter+"<!> "+Raum+"<!> "+Fach+"<!> "+Art+"<!> "+Tag+"<!> "+FachAusgeschrieben+"<!> "+VertVon+"<!> "+VertText;
+    }
 
     public void setArt(String art) {
         Art = art;
@@ -42,6 +61,15 @@ public class Event {
     public void setTag(String tag) {
         Tag = tag;
         Log.i(TAG, "setTag: "+tag);
+    }
+    public void setNDT(String Nachicht){
+        NDT += Nachicht+"\n";
+        Log.i(TAG, "setNDT: "+Tag+" "+Nachicht);
+    }
+    public String getNDT(){
+        if(NDT=="")
+            NDT = "Keine Nachichten zum Tag";
+        return NDT.trim();
     }
 
     public void setVertVon(String vertVon) {

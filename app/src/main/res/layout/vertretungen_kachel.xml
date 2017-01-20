@@ -5,103 +5,116 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:visibility="visible"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:id="@+id/verkach_All"
+    android:translationY="1000dp">
 
     <TextView
-        android:text="Deutsch"
-        android:layout_height="wrap_content"
-        android:id="@+id/verkach_Fach"
-        android:textSize="20sp"
-        android:textColor="@color/colorAccent"
-        android:paddingTop="4dp"
-        android:paddingStart="9dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_width="wrap_content"
-        android:paddingRight="9dp" />
-
-    <TextView
-        android:text="Deutsch"
+        android:text="1.1. Montag"
         android:layout_height="wrap_content"
         android:id="@+id/verkach_Tag"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:paddingTop="4dp"
-        android:paddingStart="9dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_width="wrap_content"
-        android:paddingRight="9dp"
-        android:lineSpacingExtra="8sp"
-        android:fontFamily="sans-serif"
-        android:layout_alignParentEnd="true"
-        android:background="@color/colorPrimary"
-        android:paddingBottom="4dp" />
-
-    <TextView
-        android:text="Entfall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/verkach_Lehrer"
-        android:layout_toEndOf="@+id/verkach_Fach"
-        android:id="@+id/verkach_Art"
-        android:textAlignment="center"
-        android:textSize="17sp" />
-
-    <TextView
-        android:text="Raum 310"
-        android:layout_height="wrap_content"
-        android:id="@+id/verkach_Raum"
-        android:paddingStart="9dp"
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/verkach_Fach"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="bei Sbt"
-        android:layout_height="wrap_content"
-        android:id="@+id/verkach_Lehrer"
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/verkach_Fach"
-        android:layout_toEndOf="@+id/verkach_Fach" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_more"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/verkach_expand"
-        android:background="@color/invisible"
-        android:layout_alignBottom="@+id/verkach_Lehrer"
-        style="@style/AppTheme.PopupOverlay"
-        android:tint="@color/colorAccent"
-        android:paddingRight="10dp" />
-
-    <TextView
-        android:text="D-11 in der 3-4. Stunde"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/verkach_Raum"
-        android:layout_alignParentStart="true"
-        android:id="@+id/verkach_moreInfo"
-        android:layout_alignParentEnd="true"
-        android:textSize="16sp"
-        android:paddingLeft="9dp"
-        android:paddingTop="5dp"
-        android:visibility="gone"
-        android:paddingBottom="4dp" />
-
-    <TextView
-        android:text="Findet statt!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/verkach_moreInfo"
-        android:layout_alignParentStart="true"
-        android:id="@+id/verkach_Text"
-        android:paddingLeft="9dp"
-        android:textColor="@color/colorAccent"
         android:textSize="18sp"
+        android:textColor="@color/black_overlay"
+        android:layout_width="wrap_content"
+        android:lineSpacingExtra="1sp"
+        android:fontFamily="sans-serif"
+        android:background="@color/invisible"
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="15dp" />
+
+    <TextView
+        android:text="Heute findet dies und das nicht statt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/verkach_Tag"
+        android:layout_alignParentStart="true"
+        android:id="@+id/verkach_NDT"
+        android:layout_alignParentEnd="true"
         android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_bright"
+        android:id="@+id/verkach_container"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="7dp"
+        android:paddingTop="7dp"
+        android:layout_alignParentTop="true"
+        android:animateLayoutChanges="true"
+        android:layout_alignParentStart="false">
+
+        <TextView
+            android:text="Entfall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/verkach_Art"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            android:visibility="visible"
+            android:layout_alignBottom="@+id/verkach_Fach"
+            android:layout_toEndOf="@+id/verkach_Fach"
+            android:paddingLeft="10dp" />
+
+        <TextView
+            android:text="bei Sbt"
+            android:layout_height="wrap_content"
+            android:id="@+id/verkach_Lehrer"
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:layout_below="@+id/verkach_Fach"
+            android:layout_toEndOf="@+id/verkach_Fach"
+            android:paddingLeft="9dp" />
+
+        <TextView
+            android:text="Raum 310"
+            android:layout_height="wrap_content"
+            android:id="@+id/verkach_Raum"
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:layout_below="@+id/verkach_Fach"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="D-11 in der 3-4. Stunde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/verkach_moreInfo"
+            android:textSize="16sp"
+            android:paddingTop="5dp"
+            android:visibility="gone"
+            android:layout_below="@+id/verkach_Lehrer"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="Findet statt!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/verkach_Text"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:layout_below="@+id/verkach_moreInfo"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="Deutsch"
+            android:layout_height="wrap_content"
+            android:id="@+id/verkach_Fach"
+            android:textSize="22sp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:textStyle="normal|bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
 </RelativeLayout>
